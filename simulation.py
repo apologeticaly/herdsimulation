@@ -71,14 +71,20 @@ class Simulation(object):
         # an array filled with Person objects that matches the specifications of the
         # simulation (correct number of people in the population, correct percentage of
         # people vaccinated, correct number of initially infected people).
-        self.population = [Person() for i in range(self.pop_size)]
+        
+        def should_be_infected(initial_infected):
+            infection_chance = self.initial_infected
+            while infection_chance > 0:
+                infection_chance -= 1
+                return True
+            else:
+                return False
+
+
         while len(self.population) < self.pop_size:
-                self.population.append(Person())
+            self.population.append(Person(self.next_person_id, should_be_infected(initial_infected)))
+            self.next_person_id += 1
 
-
-        # Use the attributes created in the init method to create a population that has
-        # the correct intial vaccination percentage and initial infected.
-        pass
 
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
@@ -104,10 +110,10 @@ class Simulation(object):
         time_step_counter = 0
         should_continue = None
 
-        while should_continue:
+        # while should_continue:
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
-        print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
+        # print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
         pass
 
     def time_step(self):
