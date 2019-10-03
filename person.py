@@ -101,3 +101,6 @@ def test_did_survive_infection():
         assert person.is_vaccinated is False
         assert person.infection is virus
         assert person.is_alive is False
+
+if __name__ == "__main__":
+    test_did_survive_infection()
