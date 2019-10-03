@@ -21,11 +21,14 @@ class Person(object):
         self.infection = infection  # Virus object or None
       
     def not_vacc_person_instantiation(self):
-        self.is_vaccinated = True
+        self.is_alive = True
         self.is_vaccinated = False
         self.infection = None
 
-
+    def vacc_person_instantiation(self):
+        self.is_alive = True
+        self.is_vaccinated = True
+        self.infection = None
 
 
     def did_survive_infection(self, Virus):
@@ -111,5 +114,7 @@ def test_did_survive_infection():
         assert person.is_alive is False
 
 if __name__ == "__main__":
+    test_did_survive_infection()
+    # test_not_vacc_person_instantiation()
+    # test_vacc_person_instantiation()
     # test_did_survive_infection()
-    test_not_vacc_person_instantiation()
