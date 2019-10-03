@@ -71,7 +71,9 @@ class Simulation(object):
         # an array filled with Person objects that matches the specifications of the
         # simulation (correct number of people in the population, correct percentage of
         # people vaccinated, correct number of initially infected people).
-        
+        self.population = [Person() for i in range(self.pop_size)]
+        while len(self.population) < self.pop_size:
+                self.population.append(Person())
 
 
         # Use the attributes created in the init method to create a population that has
