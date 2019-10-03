@@ -16,3 +16,5 @@ def test_virus_instantiation():
     assert ebola.mortality_rate == 0.25
 
     
+if __name__ == "__main__":
+    test_virus_instantiation()
