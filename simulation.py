@@ -31,11 +31,17 @@ class Simulation(object):
         '''
         # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
+
+
         # TODO: Call self._create_population() and pass in the correct parameters.
         # Store the array that this method will return in the self.population attribute.
+        self._create_population(initial_infected)
+
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
+
+
         self.logger = None
         self.population = [] # List of Person objects
         self.pop_size = pop_size # Int
@@ -65,6 +71,8 @@ class Simulation(object):
         # an array filled with Person objects that matches the specifications of the
         # simulation (correct number of people in the population, correct percentage of
         # people vaccinated, correct number of initially infected people).
+        
+
 
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
