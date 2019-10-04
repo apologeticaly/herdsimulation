@@ -1,3 +1,5 @@
+import io
+import sys
 from person import Person
 
 class Logger(object):
@@ -50,14 +52,14 @@ class Logger(object):
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
         with open(self.file_name, mode='a') as f:
-            f.wrtie('Interaction History: \n')
-            if did_infect:
+            f.write('Interaction History: \n')
+            if did_infect is True:
                 infection_state = str(person._id) + ' infected ' + str(random_person._id) + '\n'
                 f.write(infection_state)
-            elif random_person.is_vaccinated:
+            elif random_person_vacc is True:
                 infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + '\n'
-            else random_person.is_vaccinated:
-                infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + ' because ' + str(random_person._id) + 'is immune or already sick.' + \n'
+            else:
+                infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + ' because ' + str(random_person._id) + 'is immune or already sick.' + '\n'
                 f.write(infection_state)
 
     def log_infection_survival(self, person, did_die_from_infection):
@@ -97,6 +99,15 @@ class Logger(object):
         # new one begins.
         with open(self.file_name, mode='a') as f:
             f.write('Time Steps: ')
-            time_step_state = str(time_step_number) + ' ennded -- ' + 'Begin ' + str(time_step_number + 1) + '\n'
+            time_step_state = str(time_step_number) + ' ended -- ' + 'Begin ' + str(time_step_number + 1) + '\n'
             f.write(time_step_state)
         # NOTE: Here is an opportunity for a stretch challenge!
+
+    def log_continue(self, caseNum):
+        with open(self.file_name, "a") as file:
+            if caseNum == 0:
+                file.write("Everybody has Died. End of Simulation\n")
+            elif caseNum == 1:
+                file.write("Nobody is Infected. End of Simulation\n")
+            else:
+                file.write("Next Time Step Initiating...\n")
