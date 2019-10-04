@@ -19,17 +19,25 @@ class Person(object):
         self.is_alive = True  # boolean
         self.is_vaccinated = is_vaccinated  # boolean
         self.infection = infection  # Virus object or None
+    
+    def vacc_person_instantiation(self):
+        self.is_alive = True
+        self.is_vaccinated = True
+        self.infection = None
+
       
     def not_vacc_person_instantiation(self):
         self.is_alive = True
         self.is_vaccinated = False
         self.infection = None
 
-    def vacc_person_instantiation(self):
+   
+    def sick_person_instantiation(self, repo_rate, mortality_rate):
         self.is_alive = True
-        self.is_vaccinated = True
-        self.infection = None
-
+        self.is_vaccinated = False
+        self.repo_rate = repo_rate
+        self.mortality_rate = mortality_rate
+        
 
     def did_survive_infection(self, Virus):
         ''' Generate a random number and compare to virus's mortality_rate.
@@ -113,8 +121,9 @@ def test_did_survive_infection():
         assert person.infection is virus
         assert person.is_alive is False
 
-if __name__ == "__main__":
-    test_did_survive_infection()
+# if __name__ == "__main__":
+    # test_did_survive_infection()
     # test_not_vacc_person_instantiation()
     # test_vacc_person_instantiation()
     # test_did_survive_infection()
+    # test_sick_person_instantiation()
