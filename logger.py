@@ -1,3 +1,5 @@
+from person import Person
+
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
     # TODO: Write a test suite for this class to make sure each method is working
@@ -9,10 +11,14 @@ class Logger(object):
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
+
+        f = open(self.file_name, mode='w+')
+        print(f.read())
+        f.close()
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num):
+                       repo_rate):
         '''
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
@@ -21,9 +27,12 @@ class Logger(object):
         # it should create the text file that we will store all logs in.
         # TIP: Use 'w' mode when you open the file. For all other methods, use
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
+        with open(self.file_name, mode="w") as f:
+            metadata = f'Population Size: {pop_size} \t Percentage of Vaxxers: {vacc_percentage} \t Virus Name: {virus_name} \t Basic Repro Rate {repo_rate} \t \n'
+            f.write(metadata)
+
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -40,7 +49,16 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
+        with open(self.file_name, mode='a') as f:
+            f.wrtie('Interaction History: \n')
+            if did_infect:
+                infection_state = str(person._id) + ' infected ' + str(random_person._id) + '\n'
+                f.write(infection_state)
+            elif random_person.is_vaccinated:
+                infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + '\n'
+            else random_person.is_vaccinated:
+                infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + ' because ' + str(random_person._id) + 'is immune or already sick.' + \n'
+                f.write(infection_state)
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -52,7 +70,13 @@ class Logger(object):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        pass
+        with open(self.file_name, mode='a') as f:
+            f.write('Infection Survival: \n')
+            if not did_die_from_infection:
+                infection_state = str(person._id) + ' survived the infection.' + '\n'
+                f.write(infection_state)
+            else:
+                infection_state = str(person.id) + ' died from the infection.' + '\n'
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
@@ -71,5 +95,8 @@ class Logger(object):
         '''
         # TODO: Finish this method. This method should log when a time step ends, and a
         # new one begins.
+        with open(self.file_name, mode='a') as f:
+            f.write('Time Steps: ')
+            time_step_state = str(time_step_number) + ' ennded -- ' + 'Begin ' + str(time_step_number + 1) + '\n'
+            f.write(time_step_state)
         # NOTE: Here is an opportunity for a stretch challenge!
-        pass
