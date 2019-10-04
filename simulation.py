@@ -74,13 +74,12 @@ class Simulation(object):
         
         def should_be_vaccinated(vacc_percentage):
             vacc_chance = self.vacc_percentage
-            vaccinated_people = (vacc_chance // self.pop_size)
+            vaccinated_people = (vacc_chance * self.pop_size)
             while vaccinated_people > 0:
                 vaccinated_people -= 1
                 return True
             else:
                 return False
-
 
 
         def should_be_infected(initial_infected):
