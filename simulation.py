@@ -91,9 +91,15 @@ class Simulation(object):
             else:
                 return False
 
+        def what_id(next_person_id):
+            idcounter = self.next_person_id
+            while idcounter > self.pop_size:
+                idcounter += 1
+                return idcounter
+
 
         while len(self.population) < self.pop_size:
-            self.population.append(Person(self.next_person_id, should_be_infected(initial_infected), should_be_vaccinated(vacc_percentage)))
+            self.population.append(Person(what_id(self.next_person_id), should_be_infected(initial_infected), should_be_vaccinated(vacc_percentage)))
             self.next_person_id += 1
 
 
@@ -183,7 +189,6 @@ if __name__ == "__main__":
     virus_name = str(params[0])
     repro_num = float(params[1])
     mortality_rate = float(params[2])
-
     pop_size = int(params[3])
     vacc_percentage = float(params[4])
 
