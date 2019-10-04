@@ -53,7 +53,7 @@ class Logger(object):
         # exactly what happened in the interaction and create a String, and write to your logfile.
         with open(self.file_name, mode='a') as f:
             f.write('Interaction History: \n')
-            if did_infect is True:
+            if did_infect:
                 infection_state = str(person._id) + ' infected ' + str(random_person._id) + '\n'
                 f.write(infection_state)
             elif random_person_vacc is True:

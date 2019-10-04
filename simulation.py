@@ -36,7 +36,7 @@ class Simulation(object):
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
-
+        self.time_step_counter = 0
         self.population = [] # List of Person objects
         self.pop_size = pop_size # Int
         self.next_person_id = 0 # Int
@@ -125,15 +125,14 @@ class Simulation(object):
         # HINT: You may want to call the logger's log_time_step() method at the end of each time step.
         # TODO: Set this variable using a helper
 
-        time_step_counter = 0
         while should_continue:
          # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
             self.time_step()
-            self.logger.log_time_step(time_step_counter)
-            time_step_counter += 1
+            self.logger.log_time_step(self.time_step_counter)
+            self.time_step_counter += 1
             should_continue = self._simulation_should_continue()
-        print(f'The simulation has ended after {time_step_counter} turns.')
+        print(f'The simulation has ended after {self.time_step_counter} turns.')
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
@@ -147,7 +146,6 @@ class Simulation(object):
                 increment interaction counter by 1.
             '''
         # TODO: Finish this method.
-        time_step_counter = 0
         for person in self.population:
             for infected_person in self.current_infected:
                 interactions = 0
@@ -163,7 +161,7 @@ class Simulation(object):
         for person in self.population:
             if person.is_alive and person.infection == True:
                 self.logger.log_infection_survival(person, person.did_survive_infection(self.mort_rate))
-        time_step_counter += 1
+        self.time_step_counter += 1
 
         
 
