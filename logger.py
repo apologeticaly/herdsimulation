@@ -75,10 +75,10 @@ class Logger(object):
         with open(self.file_name, mode='a') as f:
             f.write('Infection Survival: \n')
             if not did_die_from_infection:
-                infection_state = str(person._id) + ' survived the infection.' + '\n'
+                infection_state = str(f"{person._id} survived the infection. \n")
                 f.write(infection_state)
             else:
-                infection_state = str(person.id) + ' died from the infection.' + '\n'
+                infection_state = str('{person.id} died from the infection.  \n')
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
