@@ -29,7 +29,7 @@ class Logger(object):
         # it should create the text file that we will store all logs in.
         # TIP: Use 'w' mode when you open the file. For all other methods, use
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-        with open(self.file_name, mode="w") as f:
+        with open(self.file_name, mode="w+") as f:
             metadata = f'Population Size: {pop_size} \t Percentage of Vaxxers: {vacc_percentage} \t Virus Name: {virus_name} \t Basic Repro Rate {repo_rate} \t \n'
             f.write(metadata)
 
@@ -51,16 +51,19 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        with open(self.file_name, mode='a') as f:
-            f.write('Interaction History: \n')
+        #with open(self.file_name, mode='a') as f:
+        #    f.write('Interaction History: \n')
+        #    if did_infect:
+        #        infection_state = str(person._id) + ' infected ' + str(random_person._id) + '\n'
+        #        f.write(infection_state)
+         #   elif random_person_vacc is True:
+         #       infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + '\n'
+         #   else:
+         #       infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + ' because ' + str(random_person._id) + 'is immune or already sick.' + '\n'
+         #       f.write(infection_state)
+        with open(self.file_name, "a") as file:
             if did_infect:
-                infection_state = str(person._id) + ' infected ' + str(random_person._id) + '\n'
-                f.write(infection_state)
-            elif random_person_vacc is True:
-                infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + '\n'
-            else:
-                infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + ' because ' + str(random_person._id) + 'is immune or already sick.' + '\n'
-                f.write(infection_state)
+                file.write("person#{} has infected person#{}\n".format(person._id, random_person._id))
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -78,7 +81,7 @@ class Logger(object):
                 infection_state = str(f"{person._id} survived the infection. \n")
                 f.write(infection_state)
             else:
-                infection_state = str('{person.id} died from the infection.  \n')
+                infection_state = str(f'{person._id} died from the infection.  \n')
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
