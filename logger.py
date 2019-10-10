@@ -19,7 +19,7 @@ class Logger(object):
         print(f.read())
         f.close()
 
-    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
+    def write_metadata(self, pop_size, vacc_percentage, virus_name, mort_rate,
                        repo_rate):
         '''
         The simulation class should use this method immediately to log the specific
@@ -30,7 +30,7 @@ class Logger(object):
         # TIP: Use 'w' mode when you open the file. For all other methods, use
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         with open(self.file_name, mode="w+") as f:
-            metadata = f'Population Size: {pop_size} \t Percentage of Vaxxers: {vacc_percentage} \t Virus Name: {virus_name} \t Basic Repro Rate {repo_rate} \t \n'
+            metadata = f'Population Size: {pop_size} \t Percentage of Vaxxers: {vacc_percentage} \t Virus Name: {virus_name} \t Basic Repro Rate {repo_rate} \t Mort Rate {mort_rate} \t\n'
             f.write(metadata)
 
         # NOTE: Make sure to end every line with a '/n' character to ensure that each

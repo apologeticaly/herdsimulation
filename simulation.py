@@ -59,11 +59,11 @@ class Simulation:
 
     def _simulation_should_continue(self):
         
-        print('total infected', self.total_infected)
+        print('total infected', len(self.current_infected))
         print('current Infected', self.current_infected)
         print('population size', self.pop_size)
 
-        if self.total_dead == self.pop_size:
+        if self.total_infected == (self.pop_size - self.total_dead):
             self.logger.log_continue(0)
             return False
 
@@ -75,8 +75,8 @@ class Simulation:
             self.logger.log_continue(1)
             return False
 
-        
-        return True
+        else:
+            return True
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
@@ -146,7 +146,7 @@ class Simulation:
             #     Simulation object's newly_infected array, so that their .infected
             #     attribute can be changed to True at the end of the time step.
 
-        if random_person.is_vaccinated or random_person.infection == False:
+        if random_person.is_vaccinated or random_person.infection == None:
             self.logger.log_interaction(person, random_person, False, True, False)
             return
 
