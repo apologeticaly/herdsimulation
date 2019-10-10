@@ -1,0 +1,2 @@
+Population Size: 5 	 Percentage of Vaxxers: 0.2 	 Virus Name: AIDS 	 Basic Repro Rate 0.6 	 
+Everybody is Infected. End of Simulation

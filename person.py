@@ -47,8 +47,7 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        random_seed = random.random()
-        if self.infection is not None and random_seed < Virus.mortality_rate:
+        if self.infection != None and random.random() < Virus.mortality_rate:
             self.is_alive = False
             return False
         else:

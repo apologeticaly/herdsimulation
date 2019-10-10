@@ -62,8 +62,7 @@ class Logger(object):
          #       infection_state = str(person._id) + ' did not infect ' + str(random_person._id) + ' because ' + str(random_person._id) + 'is immune or already sick.' + '\n'
          #       f.write(infection_state)
         with open(self.file_name, "a") as file:
-            if did_infect:
-                file.write("person#{} has infected person#{}\n".format(person._id, random_person._id))
+            file.write("person#{} has infected person#{}\n".format(person._id, random_person._id))
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -77,7 +76,7 @@ class Logger(object):
         # Append the results of the infection to the logfile
         with open(self.file_name, mode='a') as f:
             f.write('Infection Survival: \n')
-            if not did_die_from_infection:
+            if did_die_from_infection is False:
                 infection_state = str(f"{person._id} survived the infection. \n")
                 f.write(infection_state)
             else:
@@ -112,5 +111,7 @@ class Logger(object):
                 file.write("Everybody has Died. End of Simulation\n")
             elif caseNum == 1:
                 file.write("Nobody is Infected. End of Simulation\n")
-            else:
-                file.write("Next Time Step Initiating...\n")
+            elif caseNum == 2:
+                file.write("Everybody is Infected. End of Simulation\n")
+            elif caseNum == 5:
+                file.write("Next Time Step Starting...\n")
