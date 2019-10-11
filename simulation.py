@@ -63,20 +63,24 @@ class Simulation:
         print('current Infected', self.current_infected)
         print('population size', self.pop_size)
 
+        continue_var = False
+
         if self.total_infected == (self.pop_size - self.total_dead):
             self.logger.log_continue(0)
-            return False
+            continue_var = False
 
         if self.current_infected == self.pop_size:
             self.logger.log_continue(2)
-            return False
+            continue_var = False
 
-        if self.current_infected == 0:
+        if self.total_infected == 0:
             self.logger.log_continue(1)
-            return False
+            continue_var = False
 
         else:
-            return True
+            continue_var = True
+        
+        return continue_var
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
