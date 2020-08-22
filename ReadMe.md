@@ -5,7 +5,6 @@ This project was completed for the CS 1.1 course at Makeschool. The simulation i
 ## How to Use
 ```
 python3 simulation.py {pop_size} {vacc_percentage} {virus_name} {mort_rate} {repo_rate}
-
 ```
 Example output:
 ```
